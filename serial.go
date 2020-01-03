@@ -6,21 +6,21 @@ import (
 )
 
 const (
+    BaudRateUnknown = -1
     BaudRate115200 = 115200
 )
 
 type PortInfo struct {
     Status string
     PortName string
-    PortNumber int
     MaxBaudRate int
 }
 
 func ListPorts() (*[]PortInfo, error) {
     if runtime.GOOS == "linux" {
-        // TODO
+        return linuxListSerialPorts()
     } else if runtime.GOOS == "darwin" {
-        // TODO
+        return darwinListSerialPorts()
     } else if runtime.GOOS == "windows" {
         return windowsListSerialPorts()
     }

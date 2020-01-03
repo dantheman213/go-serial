@@ -32,10 +32,6 @@ func windowsListSerialPorts() (*[]PortInfo, error)  {
         line := strings.TrimSpace(removeCRLF(lines[k]))
         if line != "" {
             fields := strings.Fields(line)
-            i, err := extractIntFromStr(fields[12])
-            if err != nil {
-                return nil, err
-            }
 
             b, err := strconv.Atoi(fields[13])
             if err != nil {
@@ -45,7 +41,6 @@ func windowsListSerialPorts() (*[]PortInfo, error)  {
             list = append(list, PortInfo{
                 Status: fields[33],
                 PortName:    fields[12],
-                PortNumber:  i,
                 MaxBaudRate: b,
             })
         }
