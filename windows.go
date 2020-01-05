@@ -17,7 +17,7 @@ const (
 
 func windowsListSerialPorts() (*[]PortInfo, error)  {
     list := make([]PortInfo, 0)
-    result, err := runCommand("wmic", []string{"path", "Win32_SerialPort"})
+    result, err := runCommand("wmic path Win32_SerialPort")
     if err != nil {
         if err.Error() == "No Instance(s) Available." {
             // no serial devices have been detected

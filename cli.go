@@ -4,10 +4,27 @@ import (
     "bytes"
     "errors"
     "os/exec"
+    "runtime"
 )
 
-func runCommand(command string, args []string) (string, error) {
-    cmd := exec.Command(command, args...)
+func runCommand(command string) (string, error) {
+    var cmd *exec.Cmd = nil
+
+    switch runtime.GOOS {
+    case "darwin":
+    case "linux":
+        cmd = exec.Command("/bin/sh", "-c", command)
+        break
+    case "windows":
+        cmd = exec.Command("cmd.exe", "/c", command)
+        break
+    default:
+        break
+    }
+
+    if cmd == nil {
+        return "", errors.New("unsupported OS")
+    }
 
     var stdout bytes.Buffer
     var stderr bytes.Buffer

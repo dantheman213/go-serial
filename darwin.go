@@ -4,7 +4,7 @@ import "strings"
 
 func darwinListSerialPorts() (*[]PortInfo, error)  {
     list := make([]PortInfo, 0)
-    result, err := runCommand("ls", []string{"-l", "/dev/tty.*"})
+    result, err := runCommand("ls -l /dev/tty.*")
     if err != nil {
         return nil, err
     }
