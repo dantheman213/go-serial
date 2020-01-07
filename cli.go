@@ -11,8 +11,7 @@ func runCommand(command string) (string, error) {
     var cmd *exec.Cmd = nil
 
     switch runtime.GOOS {
-    case "darwin":
-    case "linux":
+    case "darwin", "linux":
         cmd = exec.Command("/bin/sh", "-c", command)
         break
     case "windows":
