@@ -2,7 +2,7 @@ package main
 
 import (
     "fmt"
-    "github.com/dantheman213/serial"
+    "github.com/dantheman213/go-serial"
 )
 
 func main() {
